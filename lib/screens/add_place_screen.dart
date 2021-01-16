@@ -25,6 +25,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
     }
     Provider.of<GreatPlaces>(context)
         .addPlace(_titleController.text, _pickedImage);
+    Navigator.of(context).pop();
   }
 
   @override
