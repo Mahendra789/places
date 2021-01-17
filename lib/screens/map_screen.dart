@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:path/path.dart';
 import '../models/place.dart';
 
 class MapScreen extends StatefulWidget {
@@ -50,13 +49,17 @@ class _MapScreenState extends State<MapScreen> {
           zoom: 16,
         ),
         onTap: widget.isSelecting ? _selectLocation : null,
-        markers: _pickedLocation == null
+        markers: (_pickedLocation == null && widget.isSelecting)
             ? null
             : {
                 Marker(
                   markerId: MarkerId('m1'),
-                  position: _pickedLocation,
+                  position: _pickedLocation ??
+                      LatLng(widget.initialLocation.latitude,
+                          widget.initialLocation.longitude),
                 ),
+
+                // ?? means if object is NULL.
               },
       ),
     );
